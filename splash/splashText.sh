@@ -1,9 +1,13 @@
 #!/bin/bash
 
-nbMessages=446
 colorsException=289
-
 format="\e[1m\e[33m"
+
+if [ -z "$MINECRAFT_SPLASH_TEXT_PATH" ]; then
+	export MINECRAFT_SPLASH_TEXT_PATH=$(find -P ~ | grep minecraft-splash-texts | head -n 1)
+fi
+
+nbMessages=$(cat $MINECRAFT_SPLASH_TEXT_PATH | wc -l)
 
 if [ -z "$MINECRAFT_SPLASH_TEXT_NUMBER" ] || [ "$1" == "new" ]; then
 	
@@ -11,10 +15,6 @@ if [ -z "$MINECRAFT_SPLASH_TEXT_NUMBER" ] || [ "$1" == "new" ]; then
 	export MINECRAFT_SPLASH_TEXT_NUMBER=$line
 else
 	line=$MINECRAFT_SPLASH_TEXT_NUMBER
-fi
-
-if [ -z "$MINECRAFT_SPLASH_TEXT_PATH" ]; then
-	export MINECRAFT_SPLASH_TEXT_PATH=$(find -P ~ | grep minecraft-splash-texts | head -n 1)
 fi
 	
 msg=$(cat $MINECRAFT_SPLASH_TEXT_PATH | sed "${line}q;d" | cut -d ':' -f 2)
