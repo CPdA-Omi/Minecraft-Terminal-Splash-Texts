@@ -1,16 +1,14 @@
 #!/bin/bash
 
-colorsException=289
+colorsException=291
 format="\e[1m\e[33m"
 
 if [ -z "$MINECRAFT_SPLASH_TEXT_PATH" ]; then
 	export MINECRAFT_SPLASH_TEXT_PATH=$(find -P ~ | grep minecraft-splash-texts | head -n 1)
 fi
 
-nbMessages=$(cat $MINECRAFT_SPLASH_TEXT_PATH | wc -l)
-
 if [ -z "$MINECRAFT_SPLASH_TEXT_NUMBER" ] || [ "$1" == "new" ]; then
-	
+	nbMessages=$(cat $MINECRAFT_SPLASH_TEXT_PATH | wc -l)
 	line=$((1+$RANDOM % $nbMessages))
 	export MINECRAFT_SPLASH_TEXT_NUMBER=$line
 else
