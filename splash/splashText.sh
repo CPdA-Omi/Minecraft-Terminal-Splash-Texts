@@ -8,16 +8,16 @@ if [ -z "$MINECRAFT_SPLASH_TEXT_PATH" ]; then
 	export MINECRAFT_SPLASH_TEXT_PATH=$(find -P ~ | grep $(basename $0) | head -n 1 | rev | cut -d '/' -f 2- | rev)
 fi
 
-if [ ! -e "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-texts" ]; then
+if [ ! -e "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-texts.txt" ]; then
 	isMissing=true
 else
 
 	if [ -z "$MINECRAFT_SPLASH_TEXT_NUMBER" ] || [ "$1" == "new" ]; then
-		if [ ! -e "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-total" ]; then
-			cat "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-texts" | wc -l > "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-total"
+		if [ ! -e "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-total.txt" ]; then
+			cat "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-texts.txt" | wc -l > "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-total.txt"
 			isMissing=true
 		fi
-		nbMessages=$(cat "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-total")
+		nbMessages=$(cat "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-total.txt")
 		line=$((1+$RANDOM % $nbMessages))
 		export MINECRAFT_SPLASH_TEXT_NUMBER=$line
 	else
@@ -29,7 +29,7 @@ fi
 if [ $isMissing == true ]; then
 	msg="missingno"
 else
-	msg=$(cat "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-texts" | sed "${line}q;d" | cut -d ':' -f 2)
+	msg=$(cat "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-texts.txt" | sed "${line}q;d" | cut -d ':' -f 2)
 fi
 
 if [ "$line" == "$colorsException" ]; then
