@@ -5,7 +5,7 @@ format="\e[1m\e[33m"
 isMissing=false
 
 if [ -z "$MINECRAFT_SPLASH_TEXT_PATH" ]; then
-	export MINECRAFT_SPLASH_TEXT_PATH=$(find -P ~ | grep $(basename $0) | head -n 1 | rev | cut -d '/' -f 2- | rev)
+	export MINECRAFT_SPLASH_TEXT_PATH=$(find -P ~ | grep "splashText.sh" | head -n 1 | rev | cut -d '/' -f 2- | rev)
 fi
 
 if [ ! -e "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-texts.txt" ]; then
