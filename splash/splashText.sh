@@ -12,7 +12,7 @@ if [ ! -e "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-texts.txt" ]; then
 	isMissing=true
 else
 
-	if [ -z "$MINECRAFT_SPLASH_TEXT_NUMBER" ] || [ "$1" == "new" ]; then
+	if [ -z "$MINECRAFT_SPLASH_TEXT_NUMBER" ] || [ "$1" = "new" ]; then
 		if [ ! -e "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-total.txt" ]; then
 			cat "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-texts.txt" | wc -l > "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-total.txt"
 			isMissing=true
@@ -26,13 +26,13 @@ else
 
 fi
 
-if [ $isMissing == true ]; then
+if [ $isMissing = true ]; then
 	msg="missingno"
 else
 	msg=$(cat "${MINECRAFT_SPLASH_TEXT_PATH}/minecraft-splash-texts.txt" | sed "${line}q;d" | cut -d ':' -f 2)
 fi
 
-if [ "$line" == "$colorsException" ]; then
+if [ "$line" = "$colorsException" ]; then
 	echo -e "\e[1m\e[34mC\e[32mo\e[36ml\e[31mo\e[35mr\e[33mm\e[0m\e[1ma\e[30mt\e[34mi\e[32mc\e[34m\e[36m!\e[0m"
 else
 	echo -e "${format}${msg}\e[0m"

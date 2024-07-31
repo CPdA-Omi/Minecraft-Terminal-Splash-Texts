@@ -1,8 +1,8 @@
 # Minecraft-Terminal-Splash-Texts
 A simple shell script to display a random Minecraft Splash Text in every opening of a terminal.
 
-- There is a persistance system but it works only on bash, not in zsh -> a message will not change in the same terminal whatever the number of times you launch the script.
-- Whether, you can enter "new" as an argument to have a new message but only the first message displayed will be displayed without the argument
+- There is a persistance system -> a message will not change in the same terminal whatever the number of times you launch the script.
+- Whether, you can enter "new" as an argument to have a new message. The persistance message will not change.
 
 # Brief setup instructions
 

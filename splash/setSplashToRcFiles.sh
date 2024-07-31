@@ -35,10 +35,10 @@ if [ -e ~/.zshrc ]; then
 	if [ $(cat ~/.zshrc | grep ". ${MINECRAFT_SPLASH_TEXT_PATH}/splashText.sh" | wc -l) -eq 0 ]; then
 		echo "# Minecraft Terminal Splash Texts by CPdA-Omi
 if [ -f ${MINECRAFT_SPLASH_TEXT_PATH}/splashText.sh ]; then
-	${MINECRAFT_SPLASH_TEXT_PATH}/./splashText.sh
+	source ${MINECRAFT_SPLASH_TEXT_PATH}/splashText.sh
 fi
 # uncomment the following line if you want a new alias to display the message
-# alias mcst='$(echo "${MINECRAFT_SPLASH_TEXT_PATH}/./splashText.sh")'
+# alias mcst='$(echo "source ${MINECRAFT_SPLASH_TEXT_PATH}/splashText.sh")'
 " >> ~/.zshrc
 		echo "~${USER}/.zshrc updated with splashText.sh"
 	else
