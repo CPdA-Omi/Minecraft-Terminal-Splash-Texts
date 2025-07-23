@@ -37,3 +37,6 @@ if [ "$line" = "$colorsException" ]; then
 else
 	echo -e "${format}${msg}\e[0m"
 fi
+
+unset {colorsException,format,isMissing}
+
